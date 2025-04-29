@@ -5,10 +5,10 @@ metadata:
   labels:
     app: reverse-proxy
 spec:
-  type: NodePort # Change the type to NodePort
   ports:
-  - protocol: TCP
+  - name: "8080"
     port: 8080
     targetPort: 8080
   selector:
     app: reverse-proxy
+  type: LoadBalancer

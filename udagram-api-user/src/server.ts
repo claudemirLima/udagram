@@ -27,7 +27,7 @@ import {V0_FEED_MODELS, V0_USER_MODELS} from './controllers/v0/model.index';
   app.use(cors({
     allowedHeaders: [
       'Origin', 'X-Requested-With',
-      'Content-Type', 'Accept',
+      'Content-Type', 'Accept','Access-Control-Allow-Origin',
       'X-Access-Token', 'Authorization',
     ],
     methods: 'GET,HEAD,OPTIONS,PUT,PATCH,POST,DELETE',

@@ -18,7 +18,7 @@ import {V0_FEED_MODELS, V0_USER_MODELS} from './controllers/v0/model.index';
 
   const app = express();
   const port = process.env.PORT || 8080;
-
+  origin: config.url,
   app.use(bodyParser.json());
 
   // We set the CORS origin to * so that we don't need to
@@ -27,12 +27,12 @@ import {V0_FEED_MODELS, V0_USER_MODELS} from './controllers/v0/model.index';
   app.use(cors({
     allowedHeaders: [
       'Origin', 'X-Requested-With',
-      'Content-Type', 'Accept',
+      'Content-Type', 'Accept','Access-Control-Allow-Origin',
       'X-Access-Token', 'Authorization',
     ],
     methods: 'GET,HEAD,OPTIONS,PUT,PATCH,POST,DELETE',
     preflightContinue: true,
-    origin: '*',
+    origin: "*"
   }));
 
   app.use('/api/v0/', IndexRouter);

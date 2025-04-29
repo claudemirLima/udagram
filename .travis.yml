@@ -1,0 +1,28 @@
+language: node_js
+node_js:
+- 16
+
+
+services:
+  - docker
+
+env:
+  - IMAGE_TAG=latest
+
+before_install:
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+
+script:
+  - docker-compose -f docker-compose.yaml build
+
+after_success:
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - docker tag backend-user $DOCKER_USERNAME/backend-user:$IMAGE_TAG
+  - docker tag backend-feed $DOCKER_USERNAME/backend-feed:$IMAGE_TAG
+  - docker tag frontend $DOCKER_USERNAME/frontend:$IMAGE_TAG
+  - docker tag reverse-proxy $DOCKER_USERNAME/reverse-proxy:$IMAGE_TAG
+
+  - docker push $DOCKER_USERNAME/backend-user:$IMAGE_TAG
+  - docker push $DOCKER_USERNAME/backend-feed:$IMAGE_TAG
+  - docker push $DOCKER_USERNAME/frontend:$IMAGE_TAG
+  - docker push $DOCKER_USERNAME/reverse-proxy:$IMAGE_TAG

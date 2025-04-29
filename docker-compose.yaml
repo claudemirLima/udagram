@@ -1,0 +1,64 @@
+version: "3"
+services:
+  backend-user:
+    volumes:
+      - $HOME/.aws:/root/.aws
+    environment:
+      POSTGRES_USERNAME: $POSTGRES_USERNAME
+      POSTGRES_PASSWORD: $POSTGRES_PASSWORD 
+      POSTGRES_DB: $POSTGRES_DB
+      POSTGRES_HOST: $POSTGRES_HOST
+      AWS_REGION: $AWS_REGION
+      AWS_PROFILE: $AWS_PROFILE 
+      AWS_BUCKET: $AWS_BUCKET
+      JWT_SECRET: $JWT_SECRET
+    build:
+      context: ./udagram-api-user
+    ports:
+      - "8081:8080"
+    image: backend-user
+    networks:
+      - udacity-network
+    container_name: backend-user
+  backend-feed:
+    volumes:
+      - $HOME/.aws:/root/.aws
+    environment:
+      POSTGRES_USERNAME: $POSTGRES_USERNAME
+      POSTGRES_PASSWORD: $POSTGRES_PASSWORD 
+      POSTGRES_DB: $POSTGRES_DB
+      POSTGRES_HOST: $POSTGRES_HOST
+      AWS_REGION: $AWS_REGION
+      AWS_PROFILE: $AWS_PROFILE 
+      AWS_BUCKET: $AWS_BUCKET
+      JWT_SECRET: $JWT_SECRET
+    build:
+      context: ./udagram-api-feed
+    ports:
+      - "8082:8080"
+    image: backend-feed
+    networks:
+      - udacity-network
+    container_name: backend-feed
+  frontend:
+    build:
+      context: ./udagram-frontend
+    ports:
+      - "8181:80"
+    image: frontend
+    networks:
+      - udacity-network
+    container_name: frontend-app
+  reverseproxy:
+    build:
+      context: ./udagram-reverseproxy
+    ports:
+      - "8080:8080"
+    image: reverse-proxy
+    networks:
+      - udacity-network
+    container_name: reverse-proxy
+
+networks:
+  udacity-network:
+    external: true

@@ -18,13 +18,9 @@ import {V0_FEED_MODELS} from './controllers/v0/model.index';
   app.use(bodyParser.json());
 
   app.use(cors({
-    allowedHeaders: [
-      'Origin', 'X-Requested-With',
-      'Content-Type', 'Accept', 'Access-Control-Allow-Origin',
-      'X-Access-Token', 'Authorization',
-    ],
-    methods: 'GET,HEAD,OPTIONS,PUT,PATCH,POST,DELETE',
-    origin: config.url,
+    origin: '*', // Accept requests from any origin
+    methods: ['GET', 'HEAD', 'OPTIONS', 'PUT', 'PATCH', 'POST', 'DELETE'],
+    allowedHeaders: ['*'], // Allow any headers
   }));
 
   app.use('/api/v0/', IndexRouter);

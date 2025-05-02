@@ -53,3 +53,4 @@ backend-feed-deployment.yaml
 backend-feed-service.yaml
 env-configmap.yaml
 env-secret.yaml
+eks_definition.yaml

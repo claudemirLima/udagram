@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: udagram-config
+data:
+  AWS_REGION: us-east-1
+  AWS_PROFILE: default
+  JWT_SECRET: testing
+  AWS_BUCKET: udagramclaudemir
+  URL: http://localhost:8100

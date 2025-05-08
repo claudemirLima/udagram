@@ -6,5 +6,5 @@ data:
   AWS_REGION: us-east-1
   AWS_PROFILE: default
   JWT_SECRET: testing
-  AWS_BUCKET: udagramclaudemir
+  AWS_BUCKET: 
   URL: http://localhost:8100

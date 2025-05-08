@@ -43,7 +43,7 @@ venv/
 set_env.sh
 .angular/
 .angular/
-eks_definition.yaml
+#eks_definition.yaml
 #aws-secret.yaml
 #env-configmap.yaml
 #backend-user-deployment.yaml
